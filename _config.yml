@@ -1,1 +1,13 @@
 theme: jekyll-theme-cayman
+gems:
+  - jekyll-seo-tag
+title: Biography of Abhey Rana
+description: This website provides a detailed biography of Abhey Rana
+url: www.abheyrana.me
+author: Abhey Rana
+social: 
+  name: Abhey Rana
+  links:
+    - https://www.facebook.com/Abhey.Rana.Useless
+    - https://www.linkedin.com/in/abhey-rana-55919b132/
+    - https://github.com/Abhey
