@@ -29,7 +29,7 @@ Link to Project : [Event Manager](https://github.com/Abhey/EventManager)
 Skills Used : Java, C  
 Link to Project : [Legendary Eureka](https://github.com/Abhey/legendary-eureka)
 
-## Contact
+## Contacts
 
 * <B>Email  - </B>abheyranacool123.ar@gmail.com
 * <B>Mobile No.  - </B>9455109881
