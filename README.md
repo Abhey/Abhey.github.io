@@ -13,7 +13,7 @@ Abhey started his studies at **Rani Laxmi Bai Memorial School, Lucknow** and pas
 * MySQL
 * Git And Github
 * C Programming
-* Pyhton (Beginner)
+* Python(Beginner)
 
 ## Projects
 
