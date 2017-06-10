@@ -18,20 +18,20 @@ Abhey started his studies at **Rani Laxmi Bai Memorial School, Lucknow** and pas
 ## Projects
 
 * <B>Easy Seminar - </B>Easy Seminar is an application that makes the conduction of seminars and lectures a lot more easier. It is based on client server model where the lecturar uses the server side pc application and audience use client side android application.  
-Skills Used : Java, MySQL  
-Link to Project : [Easy Seminar](https://www.abheyrana.me/EasySeminar)
+*Skills Used* : Java, MySQL  
+*Link to Project* : [Easy Seminar](https://www.abheyrana.me/EasySeminar)
 
 * <B>Quick News - </B>Quick News is a simple android app that aims at providing latest news from various news sources in a concise manner.  
-Skills Used : Android,Java,JSON  
-Link to Project : [Quick News](http://www.abheyrana.me/QuickNews)  
+*Skills Used* : Android, Java, JSON  
+*Link to Project* : [Quick News](http://www.abheyrana.me/QuickNews)  
 
 * <B>Legendary Eureka - </B>Legendary Eureka is an IDE for C and C++ for Linux Operating System.  
-Skills Used : Java, C  
-Link to Project : [Legendary Eureka](https://github.com/Abhey/legendary-eureka)
+*Skills Used* : Java, C  
+*Link to Project* : [Legendary Eureka](https://github.com/Abhey/legendary-eureka)
 
 * <B>Event Manager - </B>Event Manager software based on client server model primarily designed or scheduling events. This software helps coordinators to easily schedule events and also helps students in getting information about various events being organised.  
-Skills Used : Java, MySQL  
-Link to Project : [Event Manager](https://www.abheyrana.me/EventManager)
+*Skills Used* : Java, MySQL  
+*Link to Project* : [Event Manager](https://www.abheyrana.me/EventManager)
 
 ## Contacts
 
