@@ -21,9 +21,9 @@ Abhey started his studies at **Rani Laxmi Bai Memorial School, Lucknow** and pas
 Skills Used : Java, MySQL  
 Link to Project : [Easy Seminar](https://www.abheyrana.me/EasySeminar)
 
-* <B>Quick News - </B>Quick News is a simple android app that aims at providing latest news from various news sources in a concise manner.
-Skills Used : Android,Java,JSON
-Link to Project :[Quick News](http://www.abheyrana.me/QuickNews)
+* <B>Quick News - </B>Quick News is a simple android app that aims at providing latest news from various news sources in a concise manner.  
+Skills Used : Android,Java,JSON  
+Link to Project :[Quick News](http://www.abheyrana.me/QuickNews)  
 
 * <B>Legendary Eureka - </B>Legendary Eureka is an IDE for C and C++ for Linux Operating System.  
 Skills Used : Java, C  
