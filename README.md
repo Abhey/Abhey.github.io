@@ -17,21 +17,21 @@ Abhey started his studies at **Rani Laxmi Bai Memorial School, Lucknow** and pas
 
 ## Projects
 <UL>
-<LI><B>Easy Seminar - </B>Easy Seminar is an application that makes the conduction of seminars and lectures a lot more easier. It is based on client server model where the lecturar uses the server side pc application and audience use client side android application.
-<B>Skills Used</B> : Java, MySQL
-<B>Link to Project</B> : [Easy Seminar](https://www.abheyrana.me/EasySeminar)</LI>
+<LI><B>Easy Seminar - </B>Easy Seminar is an application that makes the conduction of seminars and lectures a lot more easier. It is based on client server model where the lecturar uses the server side pc application and audience use client side android application.<BR/>
+<B>Skills Used</B> : Java, MySQL<BR/>
+<B>Link to Project</B> : [Easy Seminar](https://www.abheyrana.me/EasySeminar)<BR/></LI>
 
-<LI><B>Quick News - </B>Quick News is a simple android app that aims at providing latest news from various news sources in a concise manner. 
-<B>Skills Used</B> : Android, Java, JSON  
-<B>Link to Project</B> : [Quick News](http://www.abheyrana.me/QuickNews)  </LI>
+<LI><B>Quick News - </B>Quick News is a simple android app that aims at providing latest news from various news sources in a concise manner.<BR/>
+<B>Skills Used</B> : Android, Java, JSON<BR/>
+<B>Link to Project</B> : [Quick News](http://www.abheyrana.me/QuickNews)<BR/></LI>
 
-<LI><B>Legendary Eureka - </B>Legendary Eureka is an IDE for C and C++ for Linux Operating System.  
-<B>Skills Used</B> : Java, C  
-<B>Link to Project</B> : [Legendary Eureka](https://github.com/Abhey/legendary-eureka)  </LI>
+<LI><B>Legendary Eureka - </B>Legendary Eureka is an IDE for C and C++ for Linux Operating System.<BR/>
+<B>Skills Used</B> : Java, C<BR/>
+<B>Link to Project</B> : [Legendary Eureka](https://github.com/Abhey/legendary-eureka)<BR/></LI>
 
-<LI><B>Event Manager - </B>Event Manager software based on client server model primarily designed or scheduling events. This software helps coordinators to easily schedule events and also helps students in getting information about various events being organised.  
-<B>Skills Used</B> : Java, MySQL  
-<B>Link to Project</B> : [Event Manager](https://www.abheyrana.me/EventManager)  </LI>
+<LI><B>Event Manager - </B>Event Manager software based on client server model primarily designed or scheduling events. This software helps coordinators to easily schedule events and also helps students in getting information about various events being organised.<BR/>
+<B>Skills Used</B> : Java, MySQL<BR/>
+<B>Link to Project</B> : [Event Manager](https://www.abheyrana.me/EventManager)<BR/></LI>
 </UL>
 ## Contacts
 
