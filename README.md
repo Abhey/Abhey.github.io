@@ -4,7 +4,7 @@ Born on 9<sup>th</sup> March 1998 in the city of Lucknow, Abhey Rana is an enthu
 
 ## Educational Background
 
-Abhey started his studies at **Rani Laxmi Bai Memorial School, Lucknow** and passed intermediate from the same college with 96.6% . Currently he is enrolled in a 4 year bachelors program at **Motilal Nehru National Institute Of Technology** with average grade point of 8.4 till fourth semester.   
+Abhey started his studies at **Rani Laxmi Bai Memorial School, Lucknow** and passed intermediate from the same college with 96.6% . Currently he is enrolled in a 4 year bachelors program at **Motilal Nehru National Institute Of Technology** with an average grade point of 8.4 till fourth semester.   
 
 ## Skills
 
