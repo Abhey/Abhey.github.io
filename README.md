@@ -8,12 +8,12 @@ Abhey started his studies at **Rani Laxmi Bai Memorial School, Lucknow** and pas
 
 ## Skills
 
-* Core Java (Advanced)
+* Core Java
 * Android App Development
 * MySQL
 * Git And Github
 * C Programming
-* Python(Beginner)
+* Python
 
 ## Projects
 <UL>
