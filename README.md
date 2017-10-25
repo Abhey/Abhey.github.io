@@ -35,5 +35,5 @@ Abhey started his studies at **Rani Laxmi Bai Memorial School, Lucknow** and pas
 </UL>
 ## Contacts
 
-* <B>Email  - </B>abheyranacool123.ar@gmail.com
+* <B>Email  - </B>abheyr@acm.org
 * <B>Mobile No.  - </B>9455109881
