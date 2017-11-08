@@ -33,7 +33,8 @@ Abhey started his studies at **Rani Laxmi Bai Memorial School, Lucknow** and pas
 <B>Skills Used</B> : Java, MySQL<BR/>
 <B>Link to Project</B> : <A href = "http://www.abheyrana.me/EventManager">Event Manager</A><BR/><BR/></LI>
 </UL>
+
 ## Contacts
 
-* <B>Email  - </B>abheyr@acm.org
+* <B>Email ID - </B>abheyr@acm.org
 * <B>Mobile No.  - </B>9455109881
