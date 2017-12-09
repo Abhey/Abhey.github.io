@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="shortcut icon" href="/static/img/favicon.ico?v=2" />
+        <title>Working with jar files in java - Abhey Rana</title>
+        <meta name="author" content="Abhey Rana" />
+        <meta name="description" content="Working with jar files in java" />
+        <meta name="keywords" content="Working with jar files in java, Abhey Rana, Java" />
+
+        <meta content="" property="fb:app_id">
+        <meta content="Abhey Rana" property="og:site_name">
+        
+          <meta content="Working with jar files in java" property="og:title">
+        
+        
+          <meta content="article" property="og:type">
+        
+        
+          <meta content="My Personal Blog" property="og:description">
+        
+        
+          <meta content="http://localhost:4000/java/2017/06/20/working-with-jar-files-in-java.html" property="og:url">
+        
+        
+          <meta content="2017-06-20T00:00:00+05:30" property="article:published_time">
+          <meta content="http://localhost:4000/about/" property="article:author">
+        
+        
+          <meta content="http://localhost:4000/static/img/logo-high-resolution.png" property="og:image">
+        
+        
+          
+          <meta content="Java" property="article:section">
+          
+        
+        
+          
+        
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:site" content="@RanaAbhey">
+        <meta name="twitter:creator" content="@RanaAbhey">
+        
+          <meta name="twitter:title" content="Working with jar files in java">
+        
+        
+          <meta name="twitter:url" content="http://localhost:4000/java/2017/06/20/working-with-jar-files-in-java.html">
+        
+        
+          <meta name="twitter:description" content="My Personal Blog">
+        
+        
+
+      <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
+      <script type="text/javascript">window.baseurl = 'http://localhost:4000';</script>
+      
+        <!-- Custom Fonts -->
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+
+        <!-- FontAwesome icons -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/74dfc6cf47.css">
+
+        <!-- Core BootStrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <!-- Material Design CSS -->
+        <link rel="stylesheet" href="/static/css/bootstrap-material-design.min.css">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/static/css/syntax.css">
+
+        <!-- Custom CSS -->        
+        <link rel="stylesheet" href="/static/css/thickbox.css">
+        <link rel="stylesheet" href="/static/css/main.css">
+        <link rel="stylesheet" href="/static/css/projects.css">
+
+        <script type="text/javascript">
+          //loadingImage is relative to project dir
+          var tb_pathToImage = "/static/img/loadingAnimation.gif";
+        </script>
+
+  </head>
+
+  <body class="home overflow-hidden">
+    <div class="header-panel shadow-z-2">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3 col-sm-4 col-xs-12">
+            <div class="row-picture">
+              <img id="about" class="logo-img" src="/static/img/avatar.png" height="75px" width="75px">
+            </div>
+            <div class="row-details">
+              <h4 class="list-group-item-heading">Abhey Rana</h4>
+              <p class="list-group-item-text">Freelance developer</p>
+              <div class="social-icons">
+	
+        <a class="icon" target="_blank" href="https://www.facebook.com/Abhey.Rana.Useless"><i class="fa fa-facebook"></i></a>
+    
+        <a class="icon" target="_blank" href="https://twitter.com/RanaAbhey"><i class="fa fa-twitter"></i></a>
+    
+        <a class="icon" target="_blank" href="https://www.linkedin.com/in/abhey-rana-55919b132/"><i class="fa fa-linkedin"></i></a>
+    
+        <a class="icon" target="_blank" href="https://stackoverflow.com/users/6420848/abhey-rana"><i class="fa fa-stack-exchange"></i></a>
+    
+</div>
+
+            </div>
+            <div class="navbar-header pull-right">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <i class="fa fa-2x fa-bars"></i>
+              </button>
+            </div>
+          </div>
+          <div class="col-md-9 col-sm-8 col-xs-12">
+          <div class="row">
+            <h2 class="blog-title-pro col-md-6 col-sm-12 col-xs-12 ">Working with jar files in java</h2>
+            
+            <div class="col-md-6 col-sm-12 col-xs-12 searchcontrol" id="js-search">
+              <input class="form-control" type="text" id="js-search__input" placeholder="Search">
+              <ul class="search__results" id="js-search__results"></ul>
+            </div>
+            
+            </div>
+            <p class="info">
+              
+                <span class="time">20 Jun 2017</span>
+              
+              
+                <span class="categories">
+                  &raquo; 
+                  
+                    <a href="/category/Java">Java</a>
+                    
+                  
+                </span>
+              
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container main outer">
+      <div class="row">
+        <div class="col-md-3 col-xs-12">
+              <nav class="menu">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="list-separator nav navbar-nav well well-primary post">
+
+	
+	
+	
+	
+	
+	
+    
+	
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item working-with-jar-files-in-java.html"><a href="/" target="_self"><i class="fa fa-home"></i> Home</a></li>
+
+	
+	
+	
+	
+	
+	
+    
+	
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  working-with-jar-files-in-java.html"><a href="/about/" target="_self"><i class="fa fa-comments"></i> About</a></li>
+
+	
+	
+	
+	
+	
+	
+    
+	
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  working-with-jar-files-in-java.html"><a href="/projects" target="_self"><i class="fa fa-desktop"></i> Projects</a></li>
+
+	
+	
+	
+	
+	
+	
+    
+	
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  working-with-jar-files-in-java.html"><a href="https://drive.google.com/open?id=1F9_U8K2bvN3cKY3KtMVEmqzu5GaSjGmr" target="_self"><i class="fa fa-graduation-cap"></i> Resume</a></li>
+
+	
+	
+	
+	
+	
+	
+    
+	
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  working-with-jar-files-in-java.html"><a href="https://github.com/Abhey" target="_self"><i class="fa fa-github"></i> Github</a></li>
+
+	
+	
+	
+	
+	
+	
+    
+	
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  working-with-jar-files-in-java.html"><a href="/feed.xml" target="_blank"><i class="fa fa-feed"></i> XML Feed</a></li>
+
+</ul>
+
+    </div>
+    </nav>
+
+        </div>
+        <div class="col-md-9 col-xs-12 full">
+          <div class="post-content well">
+<article class="content">
+    <div class="post"><p>Whenever a developer wants to distribute a version of his software, then all he want is to distribute a single file and not a directory structure filled with class files. JAR files were designed for this purpose. A JAR file can contain both class files and other file types like sound and image files which may be included in the project. All the files in a JAR file are compressed using a format similar to zip.</p>
+<p style="text-align: center"><strong>Creating a JAR file &#8211;  more Options</strong></p>
+<p>A jar file is created using jar tool. The general command looks somewhat like this:</p>
+<pre> jar options jar-file [manifest-file] file1 file2 file3 ...</pre>
+<ul>
+<li><strong>jar &#8211; file : </strong>name of jar file on which you want to use jar tool.</li>
+<li><strong>file1, file2, file3 : </strong> files which you want to add inside a jar file. manifest-file is the name of file which contains manifest of that jar file, giving manifest-file as an argument is entirely optional.</li>
+<li><strong>c</strong> : Creates a new or empty archive and adds files to it. If any of the specified file name are directories, then the jar program processes them recursively.</li>
+<li><strong>C</strong> : Temporarily changes the directory.</li>
+<li><strong>e :</strong> Creates an entry point in the manifest.</li>
+<li><strong>f</strong> : Specifies the JAR file name as the second command-line argument. If this parameter is missing, jar will write the result to standard output (when creating a JAR file)or read it from standard input(when extracting or tabulating a JAR file).</li>
+<li><strong>i</strong> : Creates an index file.</li>
+<li><strong>m</strong> : Adds a manifest file to the JAR file. A manifest is a description of the archive contents and origin. Every archive has a default manifest, but you can supply your own if you want to authenticate the contents of the archive.</li>
+<li><strong>M</strong> : Does not create a manifest file for the entries.</li>
+<li><strong>t :</strong> Displays the table of contents.</li>
+<li><strong>u :</strong> Updates an existing JAR file.</li>
+<li><strong>v :</strong> Generates verbose output.</li>
+<li><strong>x :</strong> Extract files. If you supply one or more file names, only those files are extracted Otherwise, all files are extracted.</li>
+<li><strong>0 :</strong> Stores without zip compression.</li>
+</ul>
+<p>The options of jar command are almost similar to that of UNIX tar command. In windows you can also get help about various options of jar command just by typing jar in cmd and then pressing enter, the output will be somewhat similar to this:</p>
+<p><img src="http://cdncontribute.geeksforgeeks.org/wp-content/uploads/Capture12.png" alt="jar command options" /></p>
+<p>Example :</p>
+<p>For creating a JAR file which have two classes server.class and client.class and a Jpeg image logo.jpeg, one need to write following command :</p>
+<pre> jar cvf chat.jar server.class client.class logo.jpeg</pre>
+<p>The output of above command will be somewhat like this:</p>
+<p><img src="http://cdncontribute.geeksforgeeks.org/wp-content/uploads/Capture22.png" alt="" /></p>
+<p>It&#8217;s a better practice to use <strong>-v</strong> option along with jar command as you will get to know how the things are going on.</p>
+<p style="text-align: center"><strong> Manifest File </strong></p>
+<p>Each JAR file contains a manifest file that describe the features of the archive. Each JAR file have a manifest file by default. Default manifest file is named as MANIFEST.MF and is present in the META-INF subdirectory of archive. Although the default manifest file contains just two entries, but complex manifest files can have way more. Here, is what a default manifest file looks like &#8211;</p>
+<p><img src="http://cdncontribute.geeksforgeeks.org/wp-content/uploads/Capture3.png" alt="Default manifest" /></p>
+<p>The entries of manifest files are grouped into sections. Each section have two entries section name and its value. We will see a bit later how these sections can really help us in controlling the properties of our archive. Manifest file can also be updated by using the <strong>m</strong> option of jar command. But there are certain things which need to kept in mind while updating manifest file otherwise you may get the following creepy message.</p>
+<pre> java.io.IOException: invalid manifest format</pre>
+<p><strong>Things to keep in mind while handling Manifest files:</strong></p>
+<ol>
+<li>You should leave space between the name and value of any section in manifest file, like Version:1.1 is in valid section instead write Version: 1.1 that space between colon and 1.1 really matters a lot.</li>
+<li>While specifying the main class you should not add .class extension at the end of class name. Simply specify the main class by typing:
+<pre>Main-Class: Classname</pre>
+<p>(I&#8217;ll be briefing about Main-Class section very shortly).&lt;/li&gt;
+<li>You must add newline at the end of file. You need not to write \n for specifying newline instead just leave the last line of your manifest file blank that will serve the purpose.</li>
+<li>Text file for manifest must use UTF-8 encoding otherwise you may get into some trouble.</li>
+&lt;/ol&gt;
+<p><strong>Example:</strong></p>
+<p>Now let&#8217;s come back and update the contents of our chat.jar archive. To update the manifest file we simply need to write the following command:</p>
+<pre> jar uvfm chat.jar manifest.txt</pre>
+<p>Here manifest.txt is the new manifest file, which has following contents:</p>
+<p><img src="http://cdncontribute.geeksforgeeks.org/wp-content/uploads/Capture5.png" alt="manifest.txt" /></p>
+<p>The output of above command will be somewhat like this:</p>
+<p><img src="http://cdncontribute.geeksforgeeks.org/wp-content/uploads/Capture6.png" alt="null" /></p>
+<p>Here we are getting two warnings because we are trying to overwrite to previously present entries.</p>
+<p style="text-align: center"><strong> Executable Jar Files </strong></p>
+<p>You can use the <strong>e</strong> option of jar command to specify the entry point of your program, ie. class which you normally want to invoke when launching your Java application.</p>
+<p><strong>Example:</strong></p>
+<p>To create chat.jar file having client class as main class you need to write following command &#8211;</p>
+<pre> jar cvfe chat.jar client client.class server.class logo.jpeg</pre>
+<p>The output of above command will be somewhat like this:</p>
+<p><img src="http://cdncontribute.geeksforgeeks.org/wp-content/uploads/Capture41.png" alt="" /></p>
+<p>Remember not to add .class extension after the name of class which you want to set main class.</p>
+<p>Alternatively you can add a Main-Class entry in the manifest file and then update it. For the above example you just need to add this entry:</p>
+<pre> Main-Class: client</pre>
+<p>With main class being set one can simply run a jar program by writing following command &#8211;</p>
+<pre> java -jar chat.jar</pre>
+<p>Depending on operating system configuration, users may even be able to launch application by double clicking the JAR file icon.</p>
+<p style="text-align: center"><strong> Package Sealing </strong></p>
+<p>Finally, we are going to discuss about package sealing in Java. We can seal a package in Java to ensure that no further classes can add themselves to it. You may want to seal a package if you use a package visible classes, methods and fields in your code. Without package sealing, other classes can add themselves to the same package and thereby gain access to package visible features.</p>
+<ul>
+<li>To achieve package sealing all one need to do is to put all classes of that package into a JAR file.</li>
+<li> By default the packages in a jar file are not sealed but one can change the global default by adding few lines in manifest file. </li>
+<li>Let&#8217;s again consider the case of our chat.jar archive, now the package of classes client.class and server.class is application and we want to seal this package all we need to do is to add following line in the manifest file and update it.
+<pre> Name: application
+Sealed: true</pre>
+<p>&lt;/li&gt;
+&lt;/ul&gt;
+<p>This is all from my side on how to work with  JAR files. Stay Tuned!!<br />
+<br />
+</p></p></li></ul></p></li></ol>
+</div>
+    <hr />
+    <div class="share-page">
+    Share this on &rarr;
+ <a href="https://twitter.com/share" class="twitter-share-button" data-via="RanaAbhey">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<!-- Google + -->
+<div class="g-plus" data-action="share" data-annotation="bubble"></div>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+<!-- Facebook -->
+<div class="fb-share-button" data-href="http://localhost:4000/java/2017/06/20/working-with-jar-files-in-java.html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
+</div>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+</article>
+<hr />
+
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+
+
+<div class="PageNavigation">
+  
+  
+    <a class="next pull-right" href="http://localhost:4000/algorithm/2017/11/09/edit-distance.html">Edit Distance &raquo;</a>
+  
+</div>
+
+
+<div class="disqus-comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* <![CDATA[ */
+
+        var disqus_shortname = "abheyrana";
+        var disqus_identifier = "http://localhost:4000_Working with jar files in java";
+        var disqus_title = "Working with jar files in java";
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    /* ]]> */
+    </script>
+</div>
+</div>
+          <div class="row">
+            <div class="col-md-12 col-xs-12 footer">
+              <footer>
+  © 2017 Abhey Rana <a href="https://termsfeed.com/privacy-policy/003a68bc126b819f6dc589c00b653604">Privacy link</a> - Powered by Jekyll.
+</footer>
+<div align="center">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <ins class="adsbygoogle"
+    style="display:block"
+    data-ad-client="ca-pub-0000000000000000"
+    data-ad-slot="0000000000"
+    data-ad-format="auto"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+            </div>
+          </div>
+        </div> <!-- end /.col-md-9 -->
+      </div> <!-- end /.row -->
+    </div>
+
+    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<script src="/static/js/super-search.js"></script>
+
+<script src="/static/js/thickbox-compressed.js"></script>
+<script src="/static/js/material.min.js"></script>
+<script src="/static/js/main.js"></script>
+<script src="/static/js/projects.js"></script>
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-72862926-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </body>
+</html>

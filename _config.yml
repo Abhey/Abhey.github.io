@@ -1,13 +1,34 @@
-theme: jekyll-theme-cayman
-gems:
-  - jekyll-seo-tag
-title: Biography of Abhey Rana
-description: This website provides a detailed biography of Abhey Rana
-url: www.abheyrana.me
+title: Abhey Rana
+description: My Personal Blog
 author: Abhey Rana
+logo: /static/img/avatar.png
+github: https://github.com/Abhey
+about: Freelance developer
+
+baseurl: ""
+url: abheyrana.me
+
+allowsearch: true
+
+disqus_shortname: abheyrana
+google_analytics: UA-72862926-1
+
 social: 
   name: Abhey Rana
   links:
     - https://www.facebook.com/Abhey.Rana.Useless
     - https://www.linkedin.com/in/abhey-rana-55919b132/
     - https://github.com/Abhey
+
+share:
+  twitter_username: RanaAbhey
+
+
+enableTags: true
+tagarray: []
+
+paginate: 20
+per_page: 20
+paginate_path: "/page:num/"
+markdown: kramdown
+gems: [jekyll-paginate, jekyll-gist]

@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Abhey Rana</title>
+    <description>My Personal Blog</description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sat, 09 Dec 2017 22:33:45 +0530</pubDate>
+    <lastBuildDate>Sat, 09 Dec 2017 22:33:45 +0530</lastBuildDate>
+    <generator>Jekyll v3.4.3</generator>
+    
+      <item>
+        <title>Edit Distance</title>
+        <description>&lt;h1&gt;Problem&lt;/h1&gt;
+&lt;p&gt;Given two strings x and y, What is the cheapest possible way to convert x into y where following operations are allowed to perform &amp;#8211;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Substitute a character c of x with c&amp;#8217;.&lt;/li&gt;
+&lt;li&gt;Insert a character in x.&lt;/li&gt;
+&lt;li&gt;Delete a character from x.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Each of these operations may have a cost associated with them. For example we may have a 26*26 matrix which can have a cost of substituting one character with another character. In a similar manner we may have a 26*2 matrix which can have cost of inserting and deleting a character.&lt;/p&gt;
+&lt;p&gt;&lt;span id=&quot;more-1729&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;For the sake of simplicity we would consider the cost associated with all the operations to be one. However one can easily implement the more general case with just small tweaks in the code presented here.&lt;/p&gt;
+&lt;p&gt;Link to problem on SPOJ &amp;#8211; Edit Distance&lt;/p&gt;
+&lt;h1&gt;Motivation&lt;/h1&gt;
+&lt;p&gt;Before delving right into the problem let&amp;#8217;s see some practical application of edit distance problem &amp;#8211;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;In phone book whenever we search for a contact with name then it suggests a list of possible contacts. This is done by calculating the minimum cost of the entered string with all the contacts present in phone book and the ones having lowest minimum cost are presented to user ( Beginners often think of using trie for solving this problem but that is wrong !!! ).&lt;/li&gt;
+&lt;li&gt;In DNA the mutation of C -&amp;gt; G is more likely than the mutation of C -&amp;gt; A. So we give the mutation of C -&amp;gt; G low-cost and mutation of C -&amp;gt; A high-cost. Then we calculate the minimum cost to transform one DNA strand to other using edit distance. This gives us an idea how much the two DNA strands are related evolutionarily.&lt;/li&gt;
+&lt;li&gt;Apart from the above two the most common application of edit distance is in spelling correction where we calculate the minimum number of edits with respect to all the valid dictionary words and the ones with the least number of edits are suggested to user.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Now let&amp;#8217;s see the implementation details.&lt;/p&gt;
+&lt;h1&gt;Problem Analysis&lt;/h1&gt;
+&lt;p&gt;Let&amp;#8217;s first figure out the sub problem for this problem.&lt;/p&gt;
+&lt;h2&gt;Sub Problem&lt;/h2&gt;
+&lt;p&gt;Suppose we have a suffix string of string x starting from index i denoted by x[i:] and suffix string of string y starting from index j denoted by y[j:]. Then &amp;#8211;&lt;/p&gt;
+&lt;p&gt;We will compare the characters x[i] and y[j] if both the character are same then answer for this sub problem will be same as answer for sub problem with suffixes x[i + 1:] and y[j + 1:].&lt;/p&gt;
+&lt;p&gt;Else we will perform these three operations &amp;#8211;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Insert the character y[j] into the string x and then cost will be cost of insertion plus the cost to solve the sub problem with suffixes x[i:] and y[j + 1:].&lt;/li&gt;
+&lt;li&gt;Delete x[i] from string x and then cost will be cost of deletion plus the cost to solve the sub problem with suffixes x[i + 1:] and y[j:].&lt;/li&gt;
+&lt;li&gt;Substitute x[i] with y[j] and then cost will be cost of substitution plus the cost to solve the sub problem with suffixes x[i + 1:] and y[j + 1:].&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The sub problem formulation will be more clear with this image &amp;#8211; &lt;img src=&quot;https://i0.wp.com/raw.githubusercontent.com/Abhey/Article-Stuff/master/Edit%20Distance(1).png?ssl=1&quot; alt=&quot;Sub problem formulation&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/p&gt;
+&lt;h1&gt;Implementation&lt;/h1&gt;
+&lt;p&gt;Now let&amp;#8217;s see implementation detail of this problem.&lt;/p&gt;
+&lt;h2&gt;Naive Implementation&lt;/h2&gt;
+&lt;p&gt;In naive implementation we will recursively solve each and every sub problem following the recurrence relation that we defined in the previous section.&lt;/p&gt;
+&lt;h3&gt;Code&lt;/h3&gt;
+&lt;p&gt;The code for naive implementation is pretty straight forward.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;bits/stdc++.h&amp;gt;
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;len1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;len2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;solveEditDistance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+
+	&lt;span class=&quot;c1&quot;&gt;// If str1 == &quot;&quot; then all we can do is insertion .........
+&lt;/span&gt;	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;len1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;len2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+	&lt;span class=&quot;c1&quot;&gt;// If str2 == &quot;&quot; then all we can do is deletion .........
+&lt;/span&gt;	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;len2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;len1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+	&lt;span class=&quot;c1&quot;&gt;// Two end characters are same hence, there is no need for substitution, insertion or deletion.
+&lt;/span&gt;	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;solveEditDistance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+	&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+		&lt;span class=&quot;c1&quot;&gt;// Time we choose between substitution, insertion and deletion ..........
+&lt;/span&gt;		&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;substitutionCost&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;solveEditDistance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+		&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;insertionCost&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;solveEditDistance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+		&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;deletionCost&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;solveEditDistance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;substitutionCost&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;insertionCost&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;deletionCost&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+
+	&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;cin&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+	&lt;span class=&quot;n&quot;&gt;len1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;len2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+	&lt;span class=&quot;n&quot;&gt;cout&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;solveEditDistance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;endl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3&gt;Complexity&lt;/h3&gt;
+&lt;p&gt;In this naive approach we are solving 3 sub problems for each sub problem irrespective of the fact that we have solved that sub problem previously. So in the worst case we may end up doing O(3^n) operations which is exponential complexity. This worst case occurs when there is no matching character in both the strings. So from here we get an idea that if we save results of each computation then we may end up with a more efficient solution. This is exactly what the dynamic programming solution does.&lt;/p&gt;
+&lt;h2&gt;Dynamic Programming Implementation&lt;/h2&gt;
+&lt;p&gt;The recursive dynamic programming implementation of this problem is almost similar to the naive solution, all we have to do is to memoize the result of each sub problem solved before returning it and we are done.&lt;/p&gt;
+&lt;p&gt;Let&amp;#8217;s talk about iterative implementation. In iterative version we will first create a dp matrix of size (|x| + 1)*(|y| + 1), Where |x| and |y| represents size of string x and y. Now each row will represent one character of string x and the last row will represent empty character. Similarly each column will represent one character of string y and the last character will represent empty character.At any point dp[i][j] will represent the minimum cost to transform the string suffix string of x starting from i into suffix string of y starting from j.&lt;/p&gt;
+&lt;p&gt;Now we will start iterating from last column of last row. If we are in last row then the cost will be cost of insertion (Because there is no character in x) and if we are in last column then the cost will be cost of deletion (Because there is no character in y). Otherwise we will find the cost according to the model that we formulated earlier.&lt;/p&gt;
+&lt;p&gt;The figure below shows how the iterative implementation will fill dp matrix for string FOOD &amp;amp; MONEY &amp;#8211;&lt;br /&gt;
+&lt;img src=&quot;https://i0.wp.com/raw.githubusercontent.com/Abhey/Article-Stuff/master/Edit%20Distance(2).png?ssl=1&quot; alt=&quot;Iterative implementation&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;Code&lt;/h3&gt;
+&lt;p&gt;Although the logic might seem difficult at first sight, but the code is pretty easy to understand.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;bits/stdc++.h&amp;gt;
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;solveEditDistance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+
+	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;len1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;len2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+
+	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;len1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;len2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+
+	&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;len1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+
+		&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;len2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+
+			&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;len1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+
+				&lt;span class=&quot;c1&quot;&gt;// If str1 == &quot;&quot; then all we can do is insertion .........
+&lt;/span&gt;				&lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;len2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+			&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+			&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;len2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+
+				&lt;span class=&quot;c1&quot;&gt;// If str2 == &quot;&quot; then all we can do is delete .........
+&lt;/span&gt;				&lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;len1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+			&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+			&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]){&lt;/span&gt;
+
+				&lt;span class=&quot;c1&quot;&gt;// Two end characters are same hence, there is no need for substitution, insertion or deletion.
+&lt;/span&gt;				&lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+
+			&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+			&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+				&lt;span class=&quot;c1&quot;&gt;// Time we choose between substitution, insertion and deletion ..........
+&lt;/span&gt;				&lt;span class=&quot;c1&quot;&gt;// We directly jump to dp[i + 1][j + 1] in case of substitution.
+&lt;/span&gt;				&lt;span class=&quot;c1&quot;&gt;// We jump to dp[i + 1][j] in case of deletion.
+&lt;/span&gt;				&lt;span class=&quot;c1&quot;&gt;// We jump to dp[i][j + 1] in case of insertion.
+&lt;/span&gt;				&lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]));&lt;/span&gt;
+
+			&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+		&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+
+	&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;cin&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+	&lt;span class=&quot;n&quot;&gt;cout&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;solveEditDistance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;endl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3&gt;Complexity&lt;/h3&gt;
+&lt;p&gt;Total number of sub problems = (total number of suffixes of string x) * (total number of suffixes in string y)&lt;br /&gt;
+Total number of suffixes in string x = |x| (Size of string x), Similarly for string y total number of suffixes = |y| (Size of string y)&lt;br /&gt;
+So, total number of sub problems = |x|*|y|&lt;br /&gt;
+Also the time required to solve one sub problem given we know solutions to rest other sub problem = O(1)&lt;br /&gt;
+So, overall complexity = |x|*|y|*O(1) = O(|x|*|y|)&lt;/p&gt;
+&lt;h1&gt;Further Reading&lt;/h1&gt;
+&lt;p&gt;In this article we have discussed the suffix based sub problem implementation, the problem can also be solved via prefix based sub problem implementation. You may refer to this article for prefix based sub problem implementation.&lt;/p&gt;
+&lt;p&gt;Another problem that can be solved via slight modification to this problem is that of Longest Common Subsequence. For further reading on LCS refer &lt;a title=&quot;Printing Longest Common Subsequence&quot; href=&quot;http://www.gohired.in/2014/04/25/printing-longest-common-subsequence/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener&quot;&gt;this article&lt;/a&gt;.&lt;/p&gt;
+</description>
+        <pubDate>Thu, 09 Nov 2017 00:00:00 +0530</pubDate>
+        <link>http://localhost:4000/algorithm/2017/11/09/edit-distance.html</link>
+        <guid isPermaLink="true">http://localhost:4000/algorithm/2017/11/09/edit-distance.html</guid>
+        
+        
+        <category>Algorithm</category>
+        
+      </item>
+    
+      <item>
+        <title>Working with jar files in java</title>
+        <description>&lt;p&gt;Whenever a developer wants to distribute a version of his software, then all he want is to distribute a single file and not a directory structure filled with class files. JAR files were designed for this purpose. A JAR file can contain both class files and other file types like sound and image files which may be included in the project. All the files in a JAR file are compressed using a format similar to zip.&lt;/p&gt;
+&lt;p style=&quot;text-align: center&quot;&gt;&lt;strong&gt;Creating a JAR file &amp;#8211;  more Options&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;A jar file is created using jar tool. The general command looks somewhat like this:&lt;/p&gt;
+&lt;pre&gt; jar options jar-file [manifest-file] file1 file2 file3 ...&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;jar &amp;#8211; file : &lt;/strong&gt;name of jar file on which you want to use jar tool.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;file1, file2, file3 : &lt;/strong&gt; files which you want to add inside a jar file. manifest-file is the name of file which contains manifest of that jar file, giving manifest-file as an argument is entirely optional.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;c&lt;/strong&gt; : Creates a new or empty archive and adds files to it. If any of the specified file name are directories, then the jar program processes them recursively.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;C&lt;/strong&gt; : Temporarily changes the directory.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;e :&lt;/strong&gt; Creates an entry point in the manifest.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;f&lt;/strong&gt; : Specifies the JAR file name as the second command-line argument. If this parameter is missing, jar will write the result to standard output (when creating a JAR file)or read it from standard input(when extracting or tabulating a JAR file).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;i&lt;/strong&gt; : Creates an index file.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;m&lt;/strong&gt; : Adds a manifest file to the JAR file. A manifest is a description of the archive contents and origin. Every archive has a default manifest, but you can supply your own if you want to authenticate the contents of the archive.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;M&lt;/strong&gt; : Does not create a manifest file for the entries.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;t :&lt;/strong&gt; Displays the table of contents.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;u :&lt;/strong&gt; Updates an existing JAR file.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;v :&lt;/strong&gt; Generates verbose output.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;x :&lt;/strong&gt; Extract files. If you supply one or more file names, only those files are extracted Otherwise, all files are extracted.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;0 :&lt;/strong&gt; Stores without zip compression.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The options of jar command are almost similar to that of UNIX tar command. In windows you can also get help about various options of jar command just by typing jar in cmd and then pressing enter, the output will be somewhat similar to this:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://cdncontribute.geeksforgeeks.org/wp-content/uploads/Capture12.png&quot; alt=&quot;jar command options&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Example :&lt;/p&gt;
+&lt;p&gt;For creating a JAR file which have two classes server.class and client.class and a Jpeg image logo.jpeg, one need to write following command :&lt;/p&gt;
+&lt;pre&gt; jar cvf chat.jar server.class client.class logo.jpeg&lt;/pre&gt;
+&lt;p&gt;The output of above command will be somewhat like this:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://cdncontribute.geeksforgeeks.org/wp-content/uploads/Capture22.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;It&amp;#8217;s a better practice to use &lt;strong&gt;-v&lt;/strong&gt; option along with jar command as you will get to know how the things are going on.&lt;/p&gt;
+&lt;p style=&quot;text-align: center&quot;&gt;&lt;strong&gt; Manifest File &lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Each JAR file contains a manifest file that describe the features of the archive. Each JAR file have a manifest file by default. Default manifest file is named as MANIFEST.MF and is present in the META-INF subdirectory of archive. Although the default manifest file contains just two entries, but complex manifest files can have way more. Here, is what a default manifest file looks like &amp;#8211;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://cdncontribute.geeksforgeeks.org/wp-content/uploads/Capture3.png&quot; alt=&quot;Default manifest&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;The entries of manifest files are grouped into sections. Each section have two entries section name and its value. We will see a bit later how these sections can really help us in controlling the properties of our archive. Manifest file can also be updated by using the &lt;strong&gt;m&lt;/strong&gt; option of jar command. But there are certain things which need to kept in mind while updating manifest file otherwise you may get the following creepy message.&lt;/p&gt;
+&lt;pre&gt; java.io.IOException: invalid manifest format&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Things to keep in mind while handling Manifest files:&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;You should leave space between the name and value of any section in manifest file, like Version:1.1 is in valid section instead write Version: 1.1 that space between colon and 1.1 really matters a lot.&lt;/li&gt;
+&lt;li&gt;While specifying the main class you should not add .class extension at the end of class name. Simply specify the main class by typing:
+&lt;pre&gt;Main-Class: Classname&lt;/pre&gt;
+&lt;p&gt;(I&amp;#8217;ll be briefing about Main-Class section very shortly).&amp;lt;/li&amp;gt;
+&lt;li&gt;You must add newline at the end of file. You need not to write \n for specifying newline instead just leave the last line of your manifest file blank that will serve the purpose.&lt;/li&gt;
+&lt;li&gt;Text file for manifest must use UTF-8 encoding otherwise you may get into some trouble.&lt;/li&gt;
+&amp;lt;/ol&amp;gt;
+&lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Now let&amp;#8217;s come back and update the contents of our chat.jar archive. To update the manifest file we simply need to write the following command:&lt;/p&gt;
+&lt;pre&gt; jar uvfm chat.jar manifest.txt&lt;/pre&gt;
+&lt;p&gt;Here manifest.txt is the new manifest file, which has following contents:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://cdncontribute.geeksforgeeks.org/wp-content/uploads/Capture5.png&quot; alt=&quot;manifest.txt&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;The output of above command will be somewhat like this:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://cdncontribute.geeksforgeeks.org/wp-content/uploads/Capture6.png&quot; alt=&quot;null&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Here we are getting two warnings because we are trying to overwrite to previously present entries.&lt;/p&gt;
+&lt;p style=&quot;text-align: center&quot;&gt;&lt;strong&gt; Executable Jar Files &lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;You can use the &lt;strong&gt;e&lt;/strong&gt; option of jar command to specify the entry point of your program, ie. class which you normally want to invoke when launching your Java application.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;To create chat.jar file having client class as main class you need to write following command &amp;#8211;&lt;/p&gt;
+&lt;pre&gt; jar cvfe chat.jar client client.class server.class logo.jpeg&lt;/pre&gt;
+&lt;p&gt;The output of above command will be somewhat like this:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://cdncontribute.geeksforgeeks.org/wp-content/uploads/Capture41.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Remember not to add .class extension after the name of class which you want to set main class.&lt;/p&gt;
+&lt;p&gt;Alternatively you can add a Main-Class entry in the manifest file and then update it. For the above example you just need to add this entry:&lt;/p&gt;
+&lt;pre&gt; Main-Class: client&lt;/pre&gt;
+&lt;p&gt;With main class being set one can simply run a jar program by writing following command &amp;#8211;&lt;/p&gt;
+&lt;pre&gt; java -jar chat.jar&lt;/pre&gt;
+&lt;p&gt;Depending on operating system configuration, users may even be able to launch application by double clicking the JAR file icon.&lt;/p&gt;
+&lt;p style=&quot;text-align: center&quot;&gt;&lt;strong&gt; Package Sealing &lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Finally, we are going to discuss about package sealing in Java. We can seal a package in Java to ensure that no further classes can add themselves to it. You may want to seal a package if you use a package visible classes, methods and fields in your code. Without package sealing, other classes can add themselves to the same package and thereby gain access to package visible features.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;To achieve package sealing all one need to do is to put all classes of that package into a JAR file.&lt;/li&gt;
+&lt;li&gt; By default the packages in a jar file are not sealed but one can change the global default by adding few lines in manifest file. &lt;/li&gt;
+&lt;li&gt;Let&amp;#8217;s again consider the case of our chat.jar archive, now the package of classes client.class and server.class is application and we want to seal this package all we need to do is to add following line in the manifest file and update it.
+&lt;pre&gt; Name: application
+Sealed: true&lt;/pre&gt;
+&lt;p&gt;&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&lt;p&gt;This is all from my side on how to work with  JAR files. Stay Tuned!!&lt;br /&gt;
+&lt;br /&gt;
+&lt;/p&gt;&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;
+</description>
+        <pubDate>Tue, 20 Jun 2017 00:00:00 +0530</pubDate>
+        <link>http://localhost:4000/java/2017/06/20/working-with-jar-files-in-java.html</link>
+        <guid isPermaLink="true">http://localhost:4000/java/2017/06/20/working-with-jar-files-in-java.html</guid>
+        
+        
+        <category>Java</category>
+        
+      </item>
+    
+  </channel>
+</rss>
