@@ -1,9 +1,9 @@
-## HCZ Material theme
+## My Blog
 
-This is a simple personal material theme, best suited for personal authors, programmars, bloggers. 
+Hey there! This blog is all about the experiences that I collect about programming, competitive coding, computer science, software development ...and other amazing stuff that one comes across in the process of learning and becoming a geek.
 
 ### Demo
-* [https://codeasashu.github.io/hcz-jekyll-blog](https://codeasashu.github.io/hcz-jekyll-blog/)
+* [http://www.abheyrana.me/](http://www.abheyrana.me/)
 
 #### Feature
 
@@ -19,4 +19,4 @@ This is a simple personal material theme, best suited for personal authors, prog
 
 #### Screenshot
 
-![Screenshot Home Page](https://raw.githubusercontent.com/ashutosh2k12/jekyllthemes/master/thumbnails/hcz-material.png  "Screenshot Home Page")
+![Screenshot Home Page](https://raw.githubusercontent.com/Abhey/Article-Stuff/master/BlogSampleImage.png "Screenshot Home Page")
