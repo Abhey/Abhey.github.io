@@ -30,7 +30,7 @@ layout: null
       <item>
         <title>{{ project.name | xml_escape }}</title>
         <description>{{ project.name | xml_escape }}</description>
-        <link>{{ project.url }}</link>
+        <!-- <link>{{ project.url }}</link> -->
         <pubDate>{{ project.date | date_to_rfc822 }}</pubDate>
         {% for tag in project.tags %}
         <category>{{ tag | xml_escape }}</category>

@@ -5,8 +5,8 @@
     <description>My Personal Blog</description>
     <link>http://http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/sitemap.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 13 Dec 2017 09:56:31 +0530</pubDate>
-    <lastBuildDate>Wed, 13 Dec 2017 09:56:31 +0530</lastBuildDate>
+    <pubDate>Wed, 13 Dec 2017 10:11:11 +0530</pubDate>
+    <lastBuildDate>Wed, 13 Dec 2017 10:11:11 +0530</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
@@ -453,7 +453,7 @@ Sealed: true&lt;/pre&gt;
       <item>
         <title>My Blog</title>
         <description>My Blog</description>
-        <link>https://github.com/Abhey/Abhey.github.io</link>
+        <!-- <link>https://github.com/Abhey/Abhey.github.io</link> -->
         <pubDate>Fri, 01 Dec 2017 00:00:00 +0530</pubDate>
         
         <category>CSS</category>
@@ -469,7 +469,7 @@ Sealed: true&lt;/pre&gt;
       <item>
         <title>Imagopedia</title>
         <description>Imagopedia</description>
-        <link>https://github.com/Abhey/Imagopedia</link>
+        <!-- <link>https://github.com/Abhey/Imagopedia</link> -->
         <pubDate>Sun, 01 Oct 2017 00:00:00 +0530</pubDate>
         
         <category>Ajax</category>
@@ -485,7 +485,7 @@ Sealed: true&lt;/pre&gt;
       <item>
         <title>Tutor Point</title>
         <description>Tutor Point</description>
-        <link>https://github.com/Abhey/Tutor-Point</link>
+        <!-- <link>https://github.com/Abhey/Tutor-Point</link> -->
         <pubDate>Fri, 01 Sep 2017 00:00:00 +0530</pubDate>
         
         <category>Java</category>
@@ -495,7 +495,7 @@ Sealed: true&lt;/pre&gt;
       <item>
         <title>C-IDE</title>
         <description>C-IDE</description>
-        <link>https://github.com/Abhey/C-IDE</link>
+        <!-- <link>https://github.com/Abhey/C-IDE</link> -->
         <pubDate>Fri, 01 Sep 2017 00:00:00 +0530</pubDate>
         
         <category>Java</category>
@@ -505,7 +505,7 @@ Sealed: true&lt;/pre&gt;
       <item>
         <title>Clash Of Pawn AI</title>
         <description>Clash Of Pawn AI</description>
-        <link>https://github.com/Abhey/Clash-Of-Pawn-AI</link>
+        <!-- <link>https://github.com/Abhey/Clash-Of-Pawn-AI</link> -->
         <pubDate>Fri, 01 Sep 2017 00:00:00 +0530</pubDate>
         
         <category>C++</category>
@@ -515,7 +515,7 @@ Sealed: true&lt;/pre&gt;
       <item>
         <title>Quick News</title>
         <description>Quick News</description>
-        <link>https://github.com/Abhey/QuickNews</link>
+        <!-- <link>https://github.com/Abhey/QuickNews</link> -->
         <pubDate>Thu, 01 Jun 2017 00:00:00 +0530</pubDate>
         
         <category>Android</category>
@@ -527,7 +527,7 @@ Sealed: true&lt;/pre&gt;
       <item>
         <title>Easy Seminar</title>
         <description>Easy Seminar</description>
-        <link>https://github.com/Abhey/EasySeminar</link>
+        <!-- <link>https://github.com/Abhey/EasySeminar</link> -->
         <pubDate>Wed, 01 Mar 2017 00:00:00 +0530</pubDate>
         
         <category>Android</category>
@@ -539,7 +539,7 @@ Sealed: true&lt;/pre&gt;
       <item>
         <title>Event Manager</title>
         <description>Event Manager</description>
-        <link>https://github.com/Abhey/EventManager</link>
+        <!-- <link>https://github.com/Abhey/EventManager</link> -->
         <pubDate>Sat, 01 Oct 2016 00:00:00 +0530</pubDate>
         
         <category>Java</category>
