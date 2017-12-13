@@ -124,13 +124,15 @@
             searchResultsEl.classList.remove('is-hidden');
             searchResultsEl.innerHTML = matchingPosts.map(function (post) {
                 d = new Date(post.pubDate);
+                post.link = post.link.substr(12);
                 str = post.link.substr(0,8);
                 if(str == 'https://'){
                     post.link = post.link.substr(8);
-                    return '<li><a href=https://"' + post.link + '">' + post.title + '<span class="search__result-date">' + d.toUTCString().replace(/.*(\d{2})\s+(\w{3})\s+(\d{4}).*/,'$2 $1, $3') + '</span></a></li>';
+                    return '<li><a href="https://' + post.link + '">' + post.title + '<span class="search__result-date">' + d.toUTCString().replace(/.*(\d{2})\s+(\w{3})\s+(\d{4}).*/,'$2 $1, $3') + '</span></a></li>';
                 }
-                else
-                    return '<li><a href="http://' + post.link + '">' + post.title + '<span class="search__result-date">' + d.toUTCString().replace(/.*(\d{2})\s+(\w{3})\s+(\d{4}).*/,'$2 $1, $3') + '</span></a></li>';
+                else{
+                    return '<li><a href="http://abheyrana.me' + post.link + '">' + post.title + '<span class="search__result-date">' + d.toUTCString().replace(/.*(\d{2})\s+(\w{3})\s+(\d{4}).*/,'$2 $1, $3') + '</span></a></li>';
+                }
             }).join('');
         }
         lastSearchResultHash = currentResultHash;
