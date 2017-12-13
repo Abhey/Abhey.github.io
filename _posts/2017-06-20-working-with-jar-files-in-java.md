@@ -42,7 +42,7 @@ categories: Java
 <li>You should leave space between the name and value of any section in manifest file, like Version:1.1 is in valid section instead write Version: 1.1 that space between colon and 1.1 really matters a lot.</li>
 <li>While specifying the main class you should not add .class extension at the end of class name. Simply specify the main class by typing:
 <pre>Main-Class: Classname</pre>
-<p>(I&#8217;ll be briefing about Main-Class section very shortly).</li>
+<p>(I&#8217;ll be briefing about Main-Class section very shortly).</p></li>
 <li>You must add newline at the end of file. You need not to write \n for specifying newline instead just leave the last line of your manifest file blank that will serve the purpose.</li>
 <li>Text file for manifest must use UTF-8 encoding otherwise you may get into some trouble.</li>
 </ol>
@@ -75,7 +75,7 @@ categories: Java
 <li>Let&#8217;s again consider the case of our chat.jar archive, now the package of classes client.class and server.class is application and we want to seal this package all we need to do is to add following line in the manifest file and update it.
 <pre> Name: application
 Sealed: true</pre>
-<p></li>
+</li>
 </ul>
 <p>This is all from my side on how to work with  JAR files. Stay Tuned!!<br />
 <br />
