@@ -1,9 +1,3 @@
----
-layout: post
-title: Working with jar files in java
-categories: Java
----
-
 <p>Whenever a developer wants to distribute a version of his software, then all he want is to distribute a single file and not a directory structure filled with class files. JAR files were designed for this purpose. A JAR file can contain both class files and other file types like sound and image files which may be included in the project. All the files in a JAR file are compressed using a format similar to zip.</p>
 <p style="text-align: center"><strong>Creating a JAR file &#8211;  more Options</strong></p>
 <p>A jar file is created using jar tool. The general command looks somewhat like this:</p>
@@ -42,10 +36,10 @@ categories: Java
 <li>You should leave space between the name and value of any section in manifest file, like Version:1.1 is in valid section instead write Version: 1.1 that space between colon and 1.1 really matters a lot.</li>
 <li>While specifying the main class you should not add .class extension at the end of class name. Simply specify the main class by typing:
 <pre>Main-Class: Classname</pre>
-<p>(I&#8217;ll be briefing about Main-Class section very shortly).</li>
+<p>(I&#8217;ll be briefing about Main-Class section very shortly).&lt;/li&gt;
 <li>You must add newline at the end of file. You need not to write \n for specifying newline instead just leave the last line of your manifest file blank that will serve the purpose.</li>
 <li>Text file for manifest must use UTF-8 encoding otherwise you may get into some trouble.</li>
-</ol>
+&lt;/ol&gt;
 <p><strong>Example:</strong></p>
 <p>Now let&#8217;s come back and update the contents of our chat.jar archive. To update the manifest file we simply need to write the following command:</p>
 <pre> jar uvfm chat.jar manifest.txt</pre>
@@ -75,7 +69,8 @@ categories: Java
 <li>Let&#8217;s again consider the case of our chat.jar archive, now the package of classes client.class and server.class is application and we want to seal this package all we need to do is to add following line in the manifest file and update it.
 <pre> Name: application
 Sealed: true</pre>
-<p></li>
-</ul>
+<p>&lt;/li&gt;
+&lt;/ul&gt;
 <p>This is all from my side on how to work with  JAR files. Stay Tuned!!<br />
 <br />
+</p></p></li></ul></p></li></ol>
