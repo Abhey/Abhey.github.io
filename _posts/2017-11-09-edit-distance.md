@@ -14,7 +14,7 @@ categories: Algorithm
 <p>Each of these operations may have a cost associated with them. For example we may have a 26*26 matrix which can have a cost of substituting one character with another character. In a similar manner we may have a 26*2 matrix which can have cost of inserting and deleting a character.</p>
 <p><span id="more-1729"></span></p>
 <p>For the sake of simplicity we would consider the cost associated with all the operations to be one. However one can easily implement the more general case with just small tweaks in the code presented here.</p>
-<p>Link to problem on SPOJ &#8211; Edit Distance</p>
+<p>Link to problem on SPOJ <a href="http://www.spoj.com/problems/EDIST/">Edit Distance</a></p>.
 <h1>Motivation</h1>
 <p>Before delving right into the problem let&#8217;s see some practical application of edit distance problem &#8211;</p>
 <ol>
