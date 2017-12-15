@@ -5,9 +5,10 @@ logo: /static/img/avatar.png
 image: /static/img/avatar.png
 github: https://github.com/Abhey
 about: Freelance developer
+type: blog
 
 baseurl: ""
-url: abheyrana.me
+url: http://abheyrana.me
 
 allowsearch: true
 
