@@ -3,10 +3,10 @@
   <channel>
     <title>Abhey Rana</title>
     <description>Hey there! This blog is all about the experiences that I collect about programming, competitive coding, computer science, software development ...and other amazing stuff that one comes across in the process of learning and becoming a geek.</description>
-    <link>http://http://localhost:4000/</link>
+    <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/sitemap.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 15 Dec 2017 13:03:48 +0530</pubDate>
-    <lastBuildDate>Fri, 15 Dec 2017 13:03:48 +0530</lastBuildDate>
+    <pubDate>Fri, 15 Dec 2017 13:10:30 +0530</pubDate>
+    <lastBuildDate>Fri, 15 Dec 2017 13:10:30 +0530</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
@@ -175,7 +175,7 @@ dp[i][j] =
 &lt;p&gt;In the dynamic programming implementation we iterate m * n times to fill dp matrix. Hence the overall complexity of this solution is O(m*n).&lt;/p&gt;
 </description>
         <pubDate>Sun, 12 Nov 2017 00:00:00 +0530</pubDate>
-        <link>http://http://localhost:4000/algorithm/2017/11/12/max-size-sqaure-sub-matrix.html</link>
+        <link>http://localhost:4000/algorithm/2017/11/12/max-size-sqaure-sub-matrix.html</link>
         <guid isPermaLink="true">http://localhost:4000/algorithm/2017/11/12/max-size-sqaure-sub-matrix.html</guid>
         
         
@@ -353,7 +353,7 @@ So, overall complexity = |x|*|y|*O(1) = O(|x|*|y|)&lt;/p&gt;
 &lt;p&gt;Another problem that can be solved via slight modification to this problem is that of Longest Common Subsequence. For further reading on LCS refer &lt;a title=&quot;Printing Longest Common Subsequence&quot; href=&quot;http://www.gohired.in/2014/04/25/printing-longest-common-subsequence/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener&quot;&gt;this article&lt;/a&gt;.&lt;/p&gt;
 </description>
         <pubDate>Thu, 09 Nov 2017 00:00:00 +0530</pubDate>
-        <link>http://http://localhost:4000/algorithm/2017/11/09/edit-distance.html</link>
+        <link>http://localhost:4000/algorithm/2017/11/09/edit-distance.html</link>
         <guid isPermaLink="true">http://localhost:4000/algorithm/2017/11/09/edit-distance.html</guid>
         
         
@@ -441,7 +441,7 @@ Sealed: true&lt;/pre&gt;
 &lt;/p&gt;
 </description>
         <pubDate>Tue, 20 Jun 2017 00:00:00 +0530</pubDate>
-        <link>http://http://localhost:4000/java/2017/06/20/working-with-jar-files-in-java.html</link>
+        <link>http://localhost:4000/java/2017/06/20/working-with-jar-files-in-java.html</link>
         <guid isPermaLink="true">http://localhost:4000/java/2017/06/20/working-with-jar-files-in-java.html</guid>
         
         
