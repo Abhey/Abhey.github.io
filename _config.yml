@@ -2,7 +2,7 @@ title: Abhey Rana
 description: Hey there! This blog is all about the experiences that I collect about programming, competitive coding, computer science, software development ...and other amazing stuff that one comes across in the process of learning and becoming a geek.
 author: Abhey Rana
 logo: /static/img/avatar.png
-image: /static/img/avatar.png
+image: https://raw.githubusercontent.com/Abhey/Article-Stuff/master/BlogSampleImage.png
 github: https://github.com/Abhey
 about: Freelance developer
 type: blog
@@ -14,6 +14,7 @@ allowsearch: true
 
 disqus_shortname: abheyrana
 google_analytics: UA-111185831-1
+fb:app:id: 162056724402015
 
 social: 
   name: Abhey Rana
